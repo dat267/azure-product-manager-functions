@@ -20,6 +20,9 @@ const productService = {
   async read(): Promise<string> {
     const iterator = this.container.items.readAll();
     const { resources } = await iterator.fetchAll();
+    if (resources.length === 0) {
+      return "[]";
+    }
     return JSON.stringify(resources);
   },
   async update(product) {
